@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+/* Angular Material Theme using Material 3 */
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+
+  // Default the application to a light color theme
+  color-scheme: light;
+
+  // Set default background, font, and text colors using Material CSS variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+}
+
+/* Global styles */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; overflow: hidden;}
+body { margin: 0; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif }
+.cursor-pointer{
+    cursor: pointer;
+}
+.bg-blue{
+    background-color: #e0e0ff !important;
+}
+.color-blue{
+    color: rgb(0, 0, 110) !important;
+}
+@media screen and (max-width:415px) {
+    .fs-5{
+        font-size: 1rem !important;
+    }
+}

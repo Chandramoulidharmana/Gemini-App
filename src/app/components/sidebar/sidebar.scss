@@ -1,0 +1,42 @@
+.sidebar-container {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 230px);
+}
+
+.list-item {
+  font-size: 0.9rem;
+}
+
+.highlighted {
+  background-color: #f1f1f1;
+}
+
+.sidebar-bottom {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 1rem;
+}
+
+.user-profile {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar-container {
+    height: auto;
+  }
+
+  .sidebar-bottom {
+    position: relative;
+    margin-top: 1rem;
+  }
+}

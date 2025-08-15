@@ -1,0 +1,97 @@
+<div class="d-flex w-100 vh-100 overflow-hidden">
+  <!-- Sidebar -->
+  <div class="d-flex flex-column border-end bg-white shadow-sm" [ngStyle]="leftStyle()">
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h5 class="mb-0">History</h5>
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="px-3 py-2">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search messages..."
+        [(ngModel)]="searchText"
+        (input)="search()"
+      />
+    </div>
+    <div class="flex-grow-1 overflow-auto p-3">
+      <div
+        class="chat-preview py-2 border-bottom"
+        *ngFor="let chat of history"
+        (click)="openChat(chat)"
+      >
+        <div *ngIf="chat.length">
+          <strong>{{ chat[0]?.message | slice:0:25 }}...</strong>
+          <div class="text-muted small">{{ chat.length }} messages</div>
+        </div>
+      </div>
+    </div>
+    <div class="p-3 border-top">
+      <button mat-flat-button color="primary" class="w-100" (click)="createNewChat()">
+        New Chat
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="d-flex flex-column bg-light" [ngStyle]="rightStyle()">
+    <div class="d-flex align-items-center p-3 border-bottom bg-white shadow-sm">
+      <button mat-icon-button class="me-3" (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h5 class="mb-0">Chat</h5>
+    </div>
+
+    <div id="chatMessage" class="flex-grow-1 overflow-auto p-3" style="scroll-behavior: smooth;">
+      <ng-container *ngFor="let i of messages">
+        <app-bubble [i]="i"></app-bubble>
+      </ng-container>
+      <div *ngIf="isLoadingShown" class="text-center text-muted mt-3">Thinking...</div>
+    </div>
+
+    <div class="p-3 border-top bg-white">
+      <div class="d-flex gap-2 align-items-end">
+        <div class="flex-grow-1">
+          <textarea
+            id="prompt"
+            [(ngModel)]="promptQuestion"
+            class="form-control"
+            placeholder="Ask something..."
+            rows="1"
+            (keyup.enter)="sendPrompt()"
+          ></textarea>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            #fileInput
+            (change)="handleFileInput($event)"
+          />
+          <button
+            mat-mini-fab
+            [ngStyle]="getImageBtnColor()"
+            (click)="fileInput.click()"
+            matTooltip="Attach Image"
+          >
+            <mat-icon>image</mat-icon>
+          </button>
+          <small *ngIf="filename" class="text-muted small text-center mt-1">
+            {{ filename | slice:0:10 }}{{ filename.length > 10 ? '...' : '' }}
+          </small>
+        </div>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="sendPrompt()"
+          [disabled]="isDisableSendButton()"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

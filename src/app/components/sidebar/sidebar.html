@@ -1,0 +1,38 @@
+<div class="container-fluid px-0 position-relative sidebar-container">
+  <div class="title d-flex justify-content-between align-items-center mt-2 px-3">
+    <p class="fs-5 fw-bold mb-0">Conversation</p>
+    <button mat-mini-fab aria-label="Close Sidebar" class="rounded-circle" (click)="closeSidebar.emit()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <div class="list mt-4 px-3">
+    <mat-list>
+      @for (item of history; track item; let index = $index) {
+        <mat-list-item
+          [ngClass]="getHighlighted(index) ? 'highlighted border border-secondary-subtle' : 'border border-white'"
+          class="rounded-5 cursor-pointer my-1">
+          <div
+            matListItemTitle
+            class="cursor-pointer list-item text-truncate w-100"
+            (click)="chooseChat(item, index)">
+            {{ item?.[0]?.message | titlecase }}
+          </div>
+        </mat-list-item>
+      }
+    </mat-list>
+  </div>
+
+  <div class="sidebar-bottom p-3" [ngStyle]="getSidebarBottomStyle()">
+    <mat-list>
+      <mat-list-item class="rounded-5 cursor-pointer border border-secondary-subtle bg-light mb-3">
+        <mat-icon matListItemIcon>edit</mat-icon>
+        <div matListItemTitle (click)="createNewChat.emit()">New Chat</div>
+      </mat-list-item>
+    </mat-list>
+    <div class="user-profile d-flex align-items-center gap-2 p-2 rounded-pill border border-secondary-subtle bg-light">
+      <button mat-mini-fab class="rounded-circle shadow-none"><mat-icon>person</mat-icon></button>
+      <div class="list-item">John Parkson</div>
+    </div>
+  </div>
+</div>

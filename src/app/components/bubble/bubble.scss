@@ -1,0 +1,31 @@
+.bubble-container {
+  align-items: flex-start;
+}
+
+.bubble-card {
+  overflow-x: auto;
+  background-color: #fff;
+}
+
+.bubble-message {
+  white-space: pre-line;
+  line-height: 1.5;
+
+  code {
+    background: #f0f0f0;
+    padding: 2px 4px;
+    font-family: monospace;
+    border-radius: 4px;
+  }
+
+  a {
+    color: #3888e3;
+    text-decoration: underline;
+  }
+}
+
+.bubble-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}

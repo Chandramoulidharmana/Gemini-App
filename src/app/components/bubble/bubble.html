@@ -1,0 +1,15 @@
+<div class="bubble-container w-100 d-flex mb-4 align-items-start">
+  <button mat-mini-fab aria-label="Sender Icon" class="me-2 rounded-circle shadow-none">
+    <mat-icon>{{ getIcon() }}</mat-icon>
+  </button>
+
+  <mat-card appearance="outlined" class="bubble-card w-100">
+    <mat-card-content [innerHTML]="updatedMessage" class="bubble-message"></mat-card-content>
+
+    <img *ngIf="i?.image"
+         mat-card-image
+         [src]="i.image"
+         alt="Chat image"
+         class="bubble-image border border-2 mt-2 rounded">
+  </mat-card>
+</div>
